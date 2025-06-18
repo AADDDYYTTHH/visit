@@ -476,12 +476,13 @@
         formData: formData
       })
     })
-    .then(res => res.text())
-    .then(msg => {
-      hideLoader();
-      showStatusMessage(msg);
-      clearForm();
+    .then(res => res.json()) // Ganti dari .text() ke .json()
+    .then(data => {
+    hideLoader();
+    showStatusMessage(data.message);
+    clearForm();
     })
+
     .catch(error => {
       hideLoader();
       showStatusMessage("❌ Error saat submit", true);
